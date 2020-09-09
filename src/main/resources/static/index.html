@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="utf-8"/>
+    <title>StudyRoom Assignment</title>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style>
+        table {
+            width: 100%;
+        }
+
+        #postTable_filter {
+            float: right;
+        }
+
+        #postTable_paginate {
+            float: right;
+        }
+
+        label {
+            display: inline-flex;
+            margin-bottom: .5rem;
+            margin-top: .5rem;
+
+        }
+
+    </style>
+</head>
+
+<body>
+<h1 style="text-align: center">Posts</h1>
+<div class="container">
+    <div class="row">
+        <table id="postTable" class="table table-striped table-bordered" style="width:100%">
+
+            <thead>
+            <tr>
+                <th>Profile Picture</th>
+                <th>Title</th>
+                <th>Tags</th>
+
+            </tr>
+            </thead>
+
+        </table>
+    </div>
+</div>
+
+
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.16/js/dataTables.bootstrap4.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $('#postTable').DataTable({
+            "sAjaxSource": "/posts",
+            "sAjaxDataProp": "",
+            "async": true,
+            "aoColumns": [
+                {
+                    "mData": "profileImage",
+                    "render": function (mData, type, row) {
+                        return '<img src="' + mData + '" />';
+                    }
+                },
+                {"mData": "title"},
+                {"mData": "tags"}
+            ],
+            "columnDefs": [
+                {"targets": [1], "searchable": false}
+            ]
+            ,
+            "iDisplayLength": 10,
+            "error": function (xhr, status, error) {
+                alert("An error occurred! Unable to fetch data from API");
+            }
+        })
+    });
+</script>
+</body>
+</html>
