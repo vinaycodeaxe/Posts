@@ -1,4 +1,4 @@
-package com.studyroom.posts.dto;
+package com.studyroom.posts.Exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,8 +9,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class Post {
-    private String profileImage;
-    private String title;
-    private String tags;
+public class ErrorResponse {
+    private String status;
+    private String reason;
 }
